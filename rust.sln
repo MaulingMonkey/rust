@@ -117,6 +117,23 @@ Project("{C7CBDBED-50CA-46FC-BE3B-1D7809D42A0A}") = "rustc", "src\rustc\rustc.rs
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "x", "x.vcxproj", "{6CD26584-1A4E-44F5-889E-4A0C1AC7AD76}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7E14B88E-819D-4C86-BD25-2C4C0AC58D24}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.gitmodules = .gitmodules
+		.mailmap = .mailmap
+		.travis.yml = .travis.yml
+		appveyor.yml = appveyor.yml
+		configure = configure
+		CONTRIBUTING.md = CONTRIBUTING.md
+		COPYRIGHT = COPYRIGHT
+		LICENSE-APACHE = LICENSE-APACHE
+		LICENSE-MIT = LICENSE-MIT
+		README.md = README.md
+		RELEASES.md = RELEASES.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

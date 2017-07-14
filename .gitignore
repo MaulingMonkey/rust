@@ -9,6 +9,8 @@
 *.cp
 *.cps
 *.d
+*.VC.db
+*.VC.opendb
 *.dSYM
 *.def
 *.diff
@@ -42,6 +44,7 @@
 *.tmp
 *.toc
 *.tp
+*.user
 *.vr
 *.x86
 *~
@@ -58,6 +61,7 @@ __pycache__/
 .project
 .settings/
 .valgrindrc
+.vs/
 .vscode/
 /*-*-*-*/
 /*-*-*/

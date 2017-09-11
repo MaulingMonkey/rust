@@ -494,6 +494,13 @@ impl<'a> Linker for MsvcLinker<'a> {
         // from the CodeView line tables in the object files.
         self.cmd.arg("/DEBUG");
 
+        let linker_name = Path::new(&self.sess.target.target.options.linker).file_stem();
+        if linker_name == Some(&OsStr::new("lld-link")) {
+            // LLVM 5.0.0's lld-link frontend doesn't yet recognize, and chokes on, /NATVIS:...
+            // LLVM 6 (or earlier) should at worst ignore them, eventually mooting this workaround.
+            // https://github.com/llvm-mirror/lld/commit/27b9c4285364d8d76bb43839daa100c2f80f8329
+            return;
+        }
         // This will cause the Microsoft linker to embed .natvis info into the the PDB file
         let sysroot = self.sess.sysroot();
         let natvis_dir_path = sysroot.join("lib\\rustlib\\etc");

@@ -203,6 +203,13 @@ for determining whether or not it is possible to statically or dynamically
 link with a dependency. For example, `cdylib` crate types may only use static
 linkage.
 
+## export-executable-symbols
+
+This flag causes `rustc` to export symbols from executables, as if they were dynamic libraries.
+
+You might use this to allow the JVM or MSCLR to call back into your executable's
+Rust code from Java/C# when embedding their runtimes into your Rust executable.
+
 ## no-integrated-as
 
 `rustc` normally uses the LLVM internal assembler to create object code. This

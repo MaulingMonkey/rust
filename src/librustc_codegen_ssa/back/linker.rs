@@ -421,6 +421,7 @@ impl<'a> Linker for GccLinker<'a> {
         // Symbol visibility in object files typically takes care of this.
         if crate_type == CrateType::Executable
             && self.sess.target.target.options.override_export_symbols.is_none()
+            && !self.sess.opts.cg.export_executable_symbols
         {
             return;
         }
@@ -699,9 +700,13 @@ impl<'a> Linker for MsvcLinker<'a> {
     // their symbols exported.
     fn export_symbols(&mut self, tmpdir: &Path, crate_type: CrateType) {
         // Symbol visibility takes care of this typically
-        if crate_type == CrateType::Executable {
+        if crate_type == CrateType::Executable
+            && !self.sess.opts.cg.export_executable_symbols
+        {
             return;
         }
+
+        debug!("EXPORTED SYMBOLS:");
 
         let path = tmpdir.join("lib.def");
         let res: io::Result<()> = try {
@@ -712,7 +717,7 @@ impl<'a> Linker for MsvcLinker<'a> {
             writeln!(f, "LIBRARY")?;
             writeln!(f, "EXPORTS")?;
             for symbol in self.info.exports[&crate_type].iter() {
-                debug!("  _{}", symbol);
+                debug!("  {}", symbol);
                 writeln!(f, "  {}", symbol)?;
             }
         };
